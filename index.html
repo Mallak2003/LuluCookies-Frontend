@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LULU COOKIES | متجر لولو للكوكيز</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">LULU COOKIES 🍪</div>
+        <nav>
+            <a href="#home">الرئيسية | Home</a>
+            <a href="#builder">صمم صندوقك | Build Box</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="home" class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpeg');">
+        <div class="hero-content">
+            <h1>إبداع المذاق في كل قطعة<br><span>Taste Creativity in Every Piece</span></h1>
+            <p>اختر نكهاتك المفضلة بعناية فائقة | Choose your flavors with care</p>
+            <button class="btn-primary" onclick="scrollToSection('builder')">ابدأ التصميم | Start Designing</button>
+        </div>
+    </section>
+
+    <section id="builder" class="builder-section">
+        <div class="builder-layout">
+            
+            <div class="selection-area">
+                <div class="step-box">
+                    <h3>1. اختر حجم الصندوق | Choose Box Size</h3>
+                    <div class="box-grid">
+                        <div class="size-card active" onclick="selectSize(4, 5.00)">
+                            <img src="box-small.jpeg" alt="Small Box">
+                            <p>صغير (4 حبات)<br>Small (4 Pcs)</p>
+                        </div>
+                        <div class="size-card" onclick="selectSize(6, 8.00)">
+                            <img src="box-med.jpeg" alt="Medium Box">
+                            <p>وسط (6 حبات)<br>Medium (6 Pcs)</p>
+                        </div>
+                        <div class="size-card" onclick="selectSize(12, 12.00)">
+                            <img src="box-large.jpeg" alt="Large Box">
+                            <p>كبير (12 حبة)<br>Large (12 Pcs)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <h3>2. حالة التعبئة | Filling Status</h3>
+                    <p class="count-text">المختار | Selected: <span id="count">0</span> / <span id="max">4</span></p>
+                    <div class="dots-wrapper" id="progress-dots"></div>
+                </div>
+
+                <div class="step-box">
+                    <h3>3. اختر النكهات | Choose Flavors</h3>
+                    <div class="flavors-grid">
+                        <div class="flavor-card" onclick="addCookie('الوحش الأزرق | Blue Monster', 3.0, '#2196F3')">
+                            <div class="img-box"><img src="cookie-blue.jpeg"></div>
+                            <h4>الوحش الأزرق<br><span>Blue Monster</span></h4>
+                            <span class="price-tag">3.00 $</span>
+                        </div>
+                        <div class="flavor-card" onclick="addCookie('ريد فيلفيت | Red Velvet', 3.0, '#D32F2F')">
+                            <div class="img-box"><img src="cookie-red.jpeg"></div>
+                            <h4>ريد فيلفيت<br><span>Red Velvet</span></h4>
+                            <span class="price-tag">3.00 $</span>
+                        </div>
+                        <div class="flavor-card" onclick="addCookie('ماتشا | Matcha Green', 3.5, '#4CAF50')">
+                            <div class="img-box"><img src="cookie-green.jpeg"></div>
+                            <h4>ماتشا خضراء<br><span>Matcha Green</span></h4>
+                            <span class="price-tag">3.50 $</span>
+                        </div>
+                        <div class="flavor-card" onclick="addCookie('شوكولاتة | Double Choc', 3.0, '#4e342e')">
+                            <div class="img-box"><img src="cookie-choc.jpeg"></div>
+                            <h4>دبل شوكولاتة<br><span>Double Choc</span></h4>
+                            <span class="price-tag">3.00 $</span>
+                        </div>
+                        <div class="flavor-card" onclick="addCookie('كلاسيك | Classic Original', 2.5, '#795548')">
+                            <div class="img-box"><img src="cookie-classic.jpeg"></div>
+                            <h4>كلاسيك أصلي<br><span>Classic Original</span></h4>
+                            <span class="price-tag">2.50 $</span>
+                        </div>
+                        <div class="flavor-card" onclick="addCookie('وردي فراولة | Strawberry Pink', 3.0, '#f06292')">
+                            <div class="img-box"><img src="cookie-pink.jpeg"></div>
+                            <h4>وردي فراولة<br><span>Strawberry Pink</span></h4>
+                            <span class="price-tag">3.00 $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="bill-card">
+                    <h3>ملخص الطلب | Summary</h3>
+                    <div id="bill-items" class="bill-items"></div>
+                    
+                    <div class="total-row">
+                        <span>المجموع | Total:</span>
+                        <span><span id="total-price">5.00</span> $</span>
+                    </div>
+
+                    <div class="address-section">
+                        <h4>تفاصيل التوصيل | Delivery Details</h4>
+                        <input type="text" id="cust-name" placeholder="اسم المستلم | Receiver Name">
+                        <input type="text" id="cust-phone" placeholder="رقم الجوال | Phone Number">
+                        <input type="text" id="cust-city" placeholder="المدينة والحي | City & District">
+                        <textarea id="cust-address" placeholder="العنوان بالتفصيل | Full Address"></textarea>
+                    </div>
+
+                    <div class="gift-option">
+                        <label>
+                            <input type="checkbox" id="isGift" onchange="toggleGift()">
+                            هذه هدية؟ | Is this a gift? 🎁
+                        </label>
+                        <div id="giftFields" class="hidden">
+                            <textarea id="giftMsg" placeholder="رسالة الهدية... | Gift Message..."></textarea>
+                            <p class="gift-note">* تغليف خاص بالهدايا | Special Gift Wrap</p>
+                        </div>
+                    </div>
+
+                    <div class="pay-icons">
+                        <i class="fab fa-apple-pay"></i>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                    </div>
+
+                    <button class="btn-confirm" onclick="finish()">تأكيد الطلب | Confirm Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
